@@ -1,0 +1,27 @@
+# Virtual Environment
+venv/
+ENV/
+env/
+.venv/
+
+# Environment Secrets & API Keys
+.env
+*.env
+
+# Python Cache & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints/
+
+# Vector Stores & Local Databases
+chroma_db/
+*.faiss
+*.index
+
+# Operating System Files
+.DS_Store
+Thumbs.db
