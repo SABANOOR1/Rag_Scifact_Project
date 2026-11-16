@@ -1,0 +1,8 @@
+# Extra dependencies for the retrieval layer (Laiba's part).  Install with:
+#   pip install -r requirements.txt -r requirements-retrieval.txt
+scikit-learn>=1.3
+scipy>=1.11
+sentence-transformers>=2.7      # pulls in torch + transformers
+matplotlib>=3.7
+# optional: exact inner-product index (same ranking as the numpy path)
+# faiss-cpu
