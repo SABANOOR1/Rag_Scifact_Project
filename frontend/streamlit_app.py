@@ -12,7 +12,7 @@ with st.sidebar:
     st.header("⚙️ System Controls")
     retrieval_method = st.selectbox(
         "Retrieval Engine",
-        ["Sentence-BERT (all-MiniLM-L6-v2)", "multi-qa-MiniLM", "TF-IDF Baseline"]
+        ["Sentence-BERT (all-MiniLM-L6-v2)", "BGE (bge-small-en-v1.5)", "BM25", "TF-IDF Baseline"]
     )
     top_k = st.slider("Documents to Retrieve (Top-K)", min_value=1, max_value=5, value=3)
     backend_url = st.text_input("Backend API URL", "http://localhost:8000")
