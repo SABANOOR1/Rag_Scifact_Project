@@ -2,14 +2,14 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 from typing import List, Optional
-from backend.mock_retriever import mock_retrieve
-from backend.generator import generate_answer 
+from backend.retriever import retrieve_documents
+from backend.generator import generate_answer
 
 app = FastAPI(title="Scientific Document RAG API", version="1.0.0")
 
 class QueryRequest(BaseModel):
     query: str
-    method: Optional[str] = "Sentence-BERT"
+    method: Optional[str] = "Sentence-BERT (all-MiniLM-L6-v2)"
     top_k: Optional[int] = 3
 
 class DocumentResponse(BaseModel):
@@ -30,8 +30,12 @@ def health_check():
 
 @app.post("/api/ask", response_model=RAGResponse)
 def ask_question(request: QueryRequest):
-    # 1. Retrieval phase (currently mock, later real)
-    docs = mock_retrieve(request.query, method=request.method, top_k=request.top_k)
+    # 1. Retrieval phase (using real SciFact corpus & embeddings)
+    docs = retrieve_documents(
+        query=request.query,
+        engine=request.method,
+        top_k=request.top_k
+    )
     
     # 2. Generation phase
     answer = generate_answer(request.query, docs)
